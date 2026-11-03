@@ -1,14 +1,11 @@
 
 :- dynamic letters/1.
 
-% Initial set of letters
 letters([a,b,c]).
 
-% Start the game
 start :-
     menu.
 
-% Display the menu
 menu :-
     nl,
     write('Hi. This is the Name Game.'), nl,
@@ -26,14 +23,12 @@ menu :-
     read(Choice),
     action(Choice).
 
-% 1 - Display letters
 action(1) :-
     letters(L),
     write('Current letters: '),
     write(L), nl,
     menu.
 
-% 2 - Add a letter
 action(2) :-
     write('Enter a letter: '),
     read(X),
@@ -44,7 +39,6 @@ action(2) :-
     write('Letter added.'), nl,
     menu.
 
-% 3 - Add at the top
 action(3) :-
     write('Enter a letter: '),
     read(X),
@@ -55,7 +49,6 @@ action(3) :-
     write('Letter added at the top.'), nl,
     menu.
 
-% 4 - Add at the bottom
 action(4) :-
     write('Enter a letter: '),
     read(X),
@@ -66,7 +59,6 @@ action(4) :-
     write('Letter added at the bottom.'), nl,
     menu.
 
-% 5 - Delete a letter
 action(5) :-
     write('Enter the letter to delete: '),
     read(X),
@@ -79,18 +71,15 @@ action(5) :-
     ),
     menu.
 
-% 6 - Delete all letters
 action(6) :-
     retractall(letters(_)),
     assertz(letters([])),
     write('All letters deleted.'), nl,
     menu.
 
-% 7 - Exit
 action(7) :-
     write('Goodbye!'), nl.
 
-% Invalid choice
 action(_) :-
     write('Invalid choice.'), nl,
     menu.
